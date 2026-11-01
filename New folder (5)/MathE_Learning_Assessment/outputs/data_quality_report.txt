@@ -1,0 +1,42 @@
+DATA QUALITY REPORT
+============================================================
+Total rows            : 9,546
+Total columns         : 8
+
+Exact duplicate rows  : 2,083
+  (Duplicates may represent repeated attempts by same student on same question.)
+  (No rows are automatically deleted. All are retained for analysis.)
+
+Missing values per column:
+  student_id                         : 0  (0.00%)
+  student_country                    : 0  (0.00%)
+  question_id                        : 0  (0.00%)
+  type_of_answer                     : 0  (0.00%)
+  question_level                     : 0  (0.00%)
+  topic                              : 0  (0.00%)
+  subtopic                           : 0  (0.00%)
+  keywords                           : 0  (0.00%)
+
+Unique students       : 372
+Unique questions      : 833
+
+Class distribution (type_of_answer):
+  Correct   (np.int64(0)) :  5,076  (53.2%)
+  Incorrect (np.int64(1)) :  4,470  (46.8%)
+
+Label encoding:
+  Label encoding confirmed:
+      np.int64(0) -> correct answer (negative class)
+      np.int64(1) -> incorrect answer (positive class, what we predict)
+    This matches the UCI paper convention (0=correct, 1=incorrect).
+
+NOTE: The UCI documentation reports 9,546 records and 8 features.
+      Actual file has 9,546 records and 8 columns.
+      Differences (if any) are reported above rather than forced to match.
+
+Leakage and Identifier Notes:
+  - Student ID is an identifier; excluded from primary model predictors.
+  - Question ID is an identifier; excluded from primary model predictors.
+  - Repeated Student IDs are expected (one student answers many questions).
+  - Repeated Question IDs are expected (many students answer same question).
+  - Exact duplicates are retained for now; none are silently removed.

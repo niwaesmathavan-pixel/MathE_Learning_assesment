@@ -1,0 +1,21 @@
+Classification Report -- SVM (Linear)
+==================================================
+Positive class (incorrect answer): np.int64(1)
+Negative class (correct answer)  : np.int64(0)
+
+              precision    recall  f1-score   support
+
+           0       0.62      0.71      0.67      1145
+           1       0.48      0.38      0.42       796
+
+    accuracy                           0.58      1941
+   macro avg       0.55      0.55      0.55      1941
+weighted avg       0.56      0.58      0.57      1941
+
+Prediction time: 0.0084 seconds
+
+Confusion Matrix Legend:
+  True Positive  (TP): Incorrect answer correctly identified as incorrect
+  True Negative  (TN): Correct answer correctly identified as correct
+  False Positive (FP): Correct answer incorrectly flagged as incorrect
+  False Negative (FN): Incorrect answer incorrectly predicted as correct

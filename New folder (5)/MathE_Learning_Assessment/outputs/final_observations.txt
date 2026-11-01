@@ -1,0 +1,77 @@
+FINAL OBSERVATIONS AND RECOMMENDATION
+======================================================================
+
+1. DATASET
+   Total records    : 9,546
+   Unique students  : 372
+   Unique questions : 833
+   Correct answers  : 5,076  (53.2%)
+   Incorrect answers: 4,470  (46.8%)
+   Exact duplicates : 2,083 rows (retained; represent repeated attempts)
+
+2. DATA QUALITY
+   Missing values: see data_quality_report.txt
+   No rows were silently deleted.
+   All duplicate and repeated-ID rows were retained for analysis.
+
+3. PREPROCESSING
+   Predictors used: student_country, question_level, topic, subtopic, keywords
+   Excluded: student_id (identifier), question_id (identifier, reduces memorization)
+   Encoding : OneHotEncoder(handle_unknown='ignore') for all categorical columns
+   Imputation: SimpleImputer(strategy='constant', fill_value='MISSING')
+   Preprocessing fitted on TRAINING data only.
+
+4. TRAIN/TEST SPLIT
+   Method          : GroupShuffleSplit on Student ID (primary)
+   Train set size  : 7,605
+   Test set size   : 1,941
+   Random seed     : 42
+
+5. MODEL RESULTS
+   Positive class (what we predict) = incorrect answer: np.int64(1)
+
+   SVM (Linear)        : Acc=0.5770  Prec=0.4802  Rec=0.3807  F1=0.4247
+   KNN                 : Acc=0.4874  Prec=0.3858  Rec=0.4221  F1=0.4031
+   Random Forest       : Acc=0.5719  Prec=0.4574  Rec=0.2362  F1=0.3115
+   Decision Tree       : Acc=0.5853  Prec=0.4815  Rec=0.1470  F1=0.2252
+
+   Best by incorrect-answer F1-score : SVM (Linear)  (F1=0.4247)
+   Best by accuracy                  : Decision Tree  (Acc=0.5853)
+
+6. KNN WHAT-IF EXPERIMENT
+   K=3: Acc=0.4920  Prec=0.3898  Rec=0.4221  F1=0.4053
+   K=5: Acc=0.4874  Prec=0.3858  Rec=0.4221  F1=0.4031
+   K=7: Acc=0.5312  Prec=0.4195  Rec=0.3731  F1=0.3949
+   K=9: Acc=0.5399  Prec=0.4393  Rec=0.4410  F1=0.4401
+
+7. MAIN FINDINGS AND LIMITATIONS
+   - This is an observational, metadata-only dataset.
+   - The model predicts answer correctness from categorical descriptors,
+     not from the content of questions or student responses.
+   - Group-aware splitting attempts to test on unseen students,
+     which gives a more realistic estimate of generalization.
+   - High accuracy can be misleading if the class distribution is imbalanced.
+   - Failing to identify incorrect answers (low recall) is costly in an
+     educational context: students in difficulty may go undetected.
+   - Falsely flagging correct answers (low precision) also has a cost:
+     unnecessary interventions waste educational resources.
+   - Predictions are probabilistic estimates, not diagnoses of student ability.
+
+8. RECOMMENDATION
+   (Based on actual measured results above.)
+   - Prefer the model with the best balance of incorrect-answer F1-score
+     and recall. In an educational context, recall for the positive class
+     (detecting actual incorrect answers) is often more important than accuracy.
+   - Random Forest is frequently robust on tabular categorical data,
+     but the choice should be confirmed from the actual output above.
+   - Do not use accuracy alone to select the best model.
+
+DISCLAIMER:
+   These predictions are statistical estimates based on limited metadata.
+   They do not diagnose, measure, or predict any individual student's
+   intelligence, learning ability, or true knowledge.
+
+Dataset: UCI MathE (ID 1031), CC BY 4.0
+Citation: Flamia Azevedo, B., Pacheco, M. F., Fernandes, F. P., & Pereira, A. I. (2024).
+          Assessing Mathematics Learning in Higher Education [Dataset].
+          UCI Machine Learning Repository. https://doi.org/10.34620/dadosipb/PW3OWY

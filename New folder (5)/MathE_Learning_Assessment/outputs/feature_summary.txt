@@ -1,0 +1,44 @@
+FEATURE SUMMARY
+============================================================
+
+Primary predictor columns (before encoding):
+  - student_country  (field: student_country)
+  - question_level  (field: question_level)
+  - topic  (field: topic)
+  - subtopic  (field: subtopic)
+  - keywords  (field: keywords)
+
+Excluded from primary model (identifiers):
+  - student_id  -> identifier, not a predictor
+  - question_id  -> identifier, excluded to prevent question memorization
+
+Preprocessing applied:
+  - SimpleImputer (strategy='constant', fill_value='MISSING') for missing categoricals
+  - OneHotEncoder (handle_unknown='ignore') for all categorical columns
+  - Preprocessing fitted on TRAINING data only; applied to test data
+
+Training set size  : 7,605 records
+Test set size      : 1,941 records
+Transformed features: 408
+
+Sample transformed feature names (first 20):
+  cat__student_country_Ireland
+  cat__student_country_Italy
+  cat__student_country_Lithuania
+  cat__student_country_Portugal
+  cat__student_country_Romania
+  cat__student_country_Russian Federation
+  cat__student_country_Slovenia
+  cat__student_country_Spain
+  cat__question_level_Advanced
+  cat__question_level_Basic
+  cat__topic_Analytic Geometry
+  cat__topic_Complex Numbers
+  cat__topic_Differential Equations
+  cat__topic_Differentiation
+  cat__topic_Fundamental Mathematics
+  cat__topic_Graph Theory
+  cat__topic_Integration
+  cat__topic_Linear Algebra
+  cat__topic_Numerical Methods
+  cat__topic_Optimization

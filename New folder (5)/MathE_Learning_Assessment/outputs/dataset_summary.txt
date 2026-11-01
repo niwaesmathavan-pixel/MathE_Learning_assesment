@@ -1,0 +1,24 @@
+DATASET SUMMARY
+============================================================
+Source : UCI Machine Learning Repository
+ID     : 1031
+DOI    : https://doi.org/10.34620/dadosipb/PW3OWY
+License: CC BY 4.0
+
+Rows   : 9,546
+Cols   : 8
+
+Column summary:
+  student_id                         : int64
+  student_country                    : object
+  question_id                        : int64
+  type_of_answer                     : int64
+  question_level                     : object
+  topic                              : object
+  subtopic                           : object
+  keywords                           : object
+
+Citation:
+  Flamia Azevedo, B., Pacheco, M. F., Fernandes, F. P., & Pereira, A. I. (2024).
+  Assessing Mathematics Learning in Higher Education [Dataset].
+  UCI Machine Learning Repository. https://doi.org/10.34620/dadosipb/PW3OWY

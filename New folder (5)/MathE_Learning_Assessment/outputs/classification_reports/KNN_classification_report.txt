@@ -1,0 +1,21 @@
+Classification Report -- KNN
+==================================================
+Positive class (incorrect answer): np.int64(1)
+Negative class (correct answer)  : np.int64(0)
+
+              precision    recall  f1-score   support
+
+           0       0.57      0.53      0.55      1145
+           1       0.39      0.42      0.40       796
+
+    accuracy                           0.49      1941
+   macro avg       0.48      0.48      0.48      1941
+weighted avg       0.49      0.49      0.49      1941
+
+Prediction time: 2.3017 seconds
+
+Confusion Matrix Legend:
+  True Positive  (TP): Incorrect answer correctly identified as incorrect
+  True Negative  (TN): Correct answer correctly identified as correct
+  False Positive (FP): Correct answer incorrectly flagged as incorrect
+  False Negative (FN): Incorrect answer incorrectly predicted as correct
